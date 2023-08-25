@@ -47,8 +47,8 @@ extract_data_from_csv = BashOperator(
 
 extract_data_from_tsv = BashOperator(
     task_id='extract_data_from_tsv',
-    bash_command='cut -f5-7 /home/project/airflow/dags/finalassignment/tollplaza-data.tsv \
-           |tr "\t" "," > /home/project/airflow/dags/finalassignment/tsv_data.csv',
+    bash_command=bash_command='awk -F, "{$4=toupper($4)}1" OFS=, /home/airflow/dags/finalassignment/extracted_data.csv > \
+                /home/airflow/dags/finalassignment/transformed_data.csv',
     dag=dag,
 )
 
